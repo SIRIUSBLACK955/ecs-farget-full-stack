@@ -82,6 +82,7 @@ resource "aws_route_table_association" "public_subnet_2_association" {
 }
 
 resource "aws_nat_gateway" "my_nat_gateway" {
+    vpc_id = aws_vpc.name.id
     allocation_id = aws_eip.nat_eip.id
     availability_mode = "regional"
     tags = {
@@ -223,13 +224,12 @@ resource "aws_db_subnet_group" "my_db_subnet_group" {
 resource "aws_db_instance" "my_database" {
     allocated_storage    = 20
     engine               = "postgres"
-    engine_version       = "12.4"
+    engine_version       = "16"
     instance_class       = "db.t3.micro"
     identifier           = "cloud-notes-db"
     db_name              = "cloudnotes"
     username             = "appuser"
     password             = "Cloud123"
-    parameter_group_name = "default.postgres12"
     skip_final_snapshot  = true
     vpc_security_group_ids = [aws_security_group.database-sg.id]
     db_subnet_group_name = aws_db_subnet_group.my_db_subnet_group.name
