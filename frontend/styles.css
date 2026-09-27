@@ -1,0 +1,133 @@
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #172033;
+  background: #f3f6fa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.hero {
+  background: #172033;
+  color: white;
+  padding: 56px 20px;
+}
+
+.container {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  opacity: .75;
+  font-size: .8rem;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: clamp(2.2rem, 7vw, 4rem);
+}
+
+.subtitle {
+  margin: 0;
+  opacity: .85;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.07);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 16px 0 7px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccd4df;
+  border-radius: 10px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+button {
+  margin-top: 16px;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #172033;
+  color: white;
+}
+
+button.secondary {
+  background: #e7ecf3;
+  color: #172033;
+  margin-top: 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note {
+  border: 1px solid #e0e5ec;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 14px;
+}
+
+.note h3 {
+  margin: 0 0 8px;
+}
+
+.note p {
+  white-space: pre-wrap;
+  color: #4d5a6e;
+}
+
+.note .delete {
+  background: transparent;
+  color: #b42318;
+  border: 1px solid #f2b8b5;
+}
+
+.status {
+  min-height: 20px;
+  color: #536174;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #667085;
+}
+
+@media (max-width: 760px) {
+  main { grid-template-columns: 1fr; }
+}

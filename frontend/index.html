@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Notes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">AWS ECS Fargate Demo</p>
+      <h1>Cloud Notes</h1>
+      <p class="subtitle">HTML frontend + Flask API + PostgreSQL RDS</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Create a note</h2>
+      <form id="noteForm">
+        <label for="title">Title</label>
+        <input id="title" maxlength="150" required placeholder="Deployment checklist">
+
+        <label for="content">Content</label>
+        <textarea id="content" required placeholder="ALB -> ECS -> RDS"></textarea>
+
+        <button type="submit">Save note</button>
+        <p id="status" class="status"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <h2>Notes</h2>
+        <button id="refreshBtn" class="secondary">Refresh</button>
+      </div>
+      <div id="notes" class="notes"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Deployed on Amazon ECS Fargate</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

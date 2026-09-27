@@ -1,0 +1,21 @@
+name: Build Containers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t cloud-notes-backend ./backend
+
+      - name: Build frontend image
+        run: docker build -t cloud-notes-frontend ./frontend
+
+      - name: Test backend container starts
+        run: docker run -d --name backend-test cloud-notes-backend && sleep 3 && docker logs backend-test
