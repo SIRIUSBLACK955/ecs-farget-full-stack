@@ -22,9 +22,8 @@ resource "aws_internet_gateway" "igw" {
     vpc_id = aws_vpc.name.id
 }
 
-resource "aws_internet_gateway_attachment" "igw_attachment" {
-    vpc_id             = aws_vpc.name.id
-    internet_gateway_id = aws_internet_gateway.igw.id
+resource "aws_eip" "nat_eip" {
+    domain = "vpc"
 }
 
 resource "aws_subnet" "private_subnet_1" {
@@ -83,7 +82,7 @@ resource "aws_route_table_association" "public_subnet_2_association" {
 }
 
 resource "aws_nat_gateway" "my_nat_gateway" {
-    vpc_id = aws_vpc.my_vpc.id
+    allocation_id = aws_eip.nat_eip.id
     availability_mode = "regional"
     tags = {
         Name = "my_nat_gateway"
