@@ -11,11 +11,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::648098101058:role/githubrole
+          aws-region: us-east-1
+
       - name: Build backend image
         run: docker build -t cloud-notes-backend ./backend
 
       - name: Build frontend image
         run: docker build -t cloud-notes-frontend ./frontend
 
-      - name: Test backend container starts
-        run: docker run -d --name backend-test cloud-notes-backend && sleep 3 && docker logs backend-test
+      - name: ecr login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag backend image
+        run: docker tag cloud-notes-backend:latest 648098101058.dkr.ecr.us-east-1.amazonaws.com/cloud-notes-backend:latest
+
+      - name: Tag frontend image
+        run: docker tag cloud-notes-frontend:latest 648098101058.dkr.ecr.us-east-1.amazonaws.com/cloud-notes-frontend:latest
+
+      - name: Push backend image to ECR
+        run: docker push 648098101058.dkr.ecr.us-east-1.amazonaws.com/cloud-notes-backend:latest
+
+      - name: Push frontend image to ECR
+        run: docker push 648098101058.dkr.ecr.us-east-1.amazonaws.com/cloud-notes-frontend:latest
